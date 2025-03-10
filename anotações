@@ -1,0 +1,10 @@
+﻿- ctrl shift seta pra baixo
+
+- aspas simples na de auditoria
+
+- dbmar (evitar) dbabr *dbcrt dbfql* dbnfb (evitar) - NUNCA os de maracanau 
+
+- quando é boolean geralmente é idx
+
+sotech.sys_create_field (deve mudar o auditoria depois):
+escala(só quando tem numeric e fala q tem escala) - defautl - se é orbigatório (true) ou não (false) - comentário

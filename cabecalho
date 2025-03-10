@@ -1,0 +1,51 @@
+Cabeçalho:
+---------------------------
+-- task_id:    DEV-5541
+-- version_db: 02.09.96.sql (-- bota uma versão a mais da que tá no grupo)
+---------------------------
+-- Correção html na tabela pep.tiposubjetivo_modelo
+
+
+
+
+Rodapé:
+-- Save version config
+insert into sotech.sys_config(config, valor) values ('versaodb', '02.09.96');
+
+
+
+
+Nome do arquivo:
+V20241204_0920__DEV-5541-02.09.96
+
+(--ano mês_dia_hora) 
+
+
+
+
+
+---------------------------
+-- task_id:    DEV-
+-- version_db: 02.10.05.sql
+---------------------------
+-- Normatização tabela
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Save version config
+insert into sotech.sys_config(config, valor) values ('versaodb', '02.10.05');

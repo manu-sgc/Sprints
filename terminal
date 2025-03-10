@@ -1,0 +1,16 @@
+no terminal:
+
+git checkout development
+
+git pull
+
+git checkout -b DEV-5682 development
+
+git add .
+
+git commit -a -m "raw task DEV-5682 - título"
+
+git push
+
+
+copia o link do git lab e adiciona ele nos comentários

@@ -1,6 +1,6 @@
 ﻿---------------------------
 -- task_id:    DEV-6522
--- version_db: 02.10.58.sql
+-- version_db: 02.10.70.sql
 ---------------------------
 -- Normatização tabela sotech.tbn_cep
 
@@ -114,4 +114,4 @@ end;
 $$ language 'plpgsql' stable;
 
 -- Save version config
-insert into sotech.sys_config(config, valor) values ('versaodb', '02.10.58');
+insert into sotech.sys_config(config, valor) values ('versaodb', '02.10.70');

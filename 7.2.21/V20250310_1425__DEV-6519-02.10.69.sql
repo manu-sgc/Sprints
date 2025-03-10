@@ -1,6 +1,6 @@
 ﻿---------------------------
 -- task_id:    DEV-6519
--- version_db: 02.10.57.sql
+-- version_db: 02.10.69.sql
 ---------------------------
 -- Normatização tabela sotech.esus_familia_paciente
 
@@ -175,4 +175,4 @@ end;
 $$ language 'plpgsql' stable;
 
 -- Save version config
-insert into sotech.sys_config(config, valor) values ('versaodb', '02.10.57');
+insert into sotech.sys_config(config, valor) values ('versaodb', '02.10.69');

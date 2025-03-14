@@ -2,18 +2,16 @@
 -- task_id:    DEV-
 -- version_db: 02.10.05.sql
 ---------------------------
-
 -- Normatização tabela sotech.crl_coluna
 
-select sotech.sys_create_field('sotech',  'crl_coluna',  'fkuser',  'integer',  null,           '0',                       true,   '(fk | idx | nn) - Referência com a tabela ish.sys_usuario');
-select sotech.sys_create_field('sotech',  'crl_coluna',  'version', 'integer',  null,           '0',                       true,   '(nn)            - Versionamento do registro');
-select sotech.sys_create_field('sotech',  'crl_coluna',  'ativo',   'boolean',  null,           'true',                    true,   '(idx | nn)      - Flag para desabilitar visualização do registro');
-select sotech.sys_create_field('sotech',  'crl_coluna',  'uuid',    'uuid',     null,           'uuid_generate_v4()',      true,   '(unq | nn)      - UUID do registro');
-select sotech.sys_create_fk   ('sotech',  'crl_coluna',  'fkuser',  'ish',      'sys_usuario',  'pkusuario',               false,  true);
-select sotech.sys_create_idx  ('sotech',  'crl_coluna',  'fkuser',  'sotech_crl_coluna_idx_fkuser');
-select sotech.sys_create_idx  ('sotech',  'crl_coluna',  'ativo',   'sotech_crl_coluna_idx_ativo');
-select sotech.sys_create_unq  ('sotech',  'crl_coluna',  'uuid',    'sotech_crl_coluna_unq_uuid');
-
+select sotech.sys_create_field      ('sotech',  'crl_coluna',  'fkuser',  'integer',  null,           '0',                    true,   '(fk | idx | nn) - Referência com a tabela ish.sys_usuario');
+select sotech.sys_create_field      ('sotech',  'crl_coluna',  'version', 'integer',  null,           '0',                    true,   '(nn)            - Versionamento do registro');
+select sotech.sys_create_field      ('sotech',  'crl_coluna',  'ativo',   'boolean',  null,           'true',                 true,   '(idx | nn)      - Flag para desabilitar visualização do registro');
+select sotech.sys_create_field      ('sotech',  'crl_coluna',  'uuid',    'uuid',     null,           'uuid_generate_v4()',   true,   '(unq | nn)      - UUID do registro');
+select sotech.sys_create_fk         ('sotech',  'crl_coluna',  'fkuser',  'ish',      'sys_usuario',  'pkusuario',            false,  true);
+select sotech.sys_create_idx        ('sotech',  'crl_coluna',  'fkuser',  'sotech_crl_coluna_idx_fkuser');
+select sotech.sys_create_idx        ('sotech',  'crl_coluna',  'ativo',   'sotech_crl_coluna_idx_ativo');
+select sotech.sys_create_unq        ('sotech',  'crl_coluna',  'uuid',    'sotech_crl_coluna_unq_uuid');
 select sotech.sys_create_audit_table('sotech',  'crl_coluna');
 select sotech.sys_create_triggers   ('sotech',  'crl_coluna',  'pkcoluna',  'auditoria');
 select sotech.sys_create_triggers   ('sotech',  'crl_coluna',  'pkcoluna',  'tratamento');
@@ -65,6 +63,7 @@ begin
       v_erro := sotech.sys_set_erro(v_erro, 'UUID já cadastrado! UUID:' || new.uuid::text || ' -> Cód:' || v_registros.codigo::text);
     end if;
   end if;
+  -- unique
   -- final
   v_registros := null;
   if length(trim(v_erro)) = 0 then

@@ -2,18 +2,16 @@
 -- task_id:    DEV-
 -- version_db: 02.10.05.sql
 ---------------------------
-
 -- Normatização tabela sotech.est_rename
 
-select sotech.sys_create_field('sotech',  'est_rename',  'fkuser',  'integer',  null,             '0',                       true,   '(fk | idx | nn) - Referência com a tabela ish.sys_usuario');
-select sotech.sys_create_field('sotech',  'est_rename',  'version', 'integer',  null,             '0',                       true,   '(nn)            - Versionamento do registro');
-select sotech.sys_create_field('sotech',  'est_rename',  'ativo',   'boolean',  null,             'true',                    true,   '(idx | nn)      - Flag para desabilitar visualização do registro');
-select sotech.sys_create_field('sotech',  'est_rename',  'uuid',    'uuid',     null,             'uuid_generate_v4()',      true,   '(unq | nn)      - UUID do registro');
-select sotech.sys_create_fk   ('sotech',  'est_rename',  'fkuser',  'ish',      'sys_usuario',    'pkusuario',               false,  true);
-select sotech.sys_create_idx  ('sotech',  'est_rename',  'fkuser',  'sotech_est_rename_idx_fkuser');
-select sotech.sys_create_idx  ('sotech',  'est_rename',  'ativo',   'sotech_est_rename_idx_ativo');
-select sotech.sys_create_unq  ('sotech',  'est_rename',  'uuid',    'sotech_est_rename_unq_uuid');
-
+select sotech.sys_create_field      ('sotech',  'est_rename',  'fkuser',  'integer',  null,             '0',                    true,   '(fk | idx | nn) - Referência com a tabela ish.sys_usuario');
+select sotech.sys_create_field      ('sotech',  'est_rename',  'version', 'integer',  null,             '0',                    true,   '(nn)            - Versionamento do registro');
+select sotech.sys_create_field      ('sotech',  'est_rename',  'ativo',   'boolean',  null,             'true',                 true,   '(idx | nn)      - Flag para desabilitar visualização do registro');
+select sotech.sys_create_field      ('sotech',  'est_rename',  'uuid',    'uuid',     null,             'uuid_generate_v4()',   true,   '(unq | nn)      - UUID do registro');
+select sotech.sys_create_fk         ('sotech',  'est_rename',  'fkuser',  'ish',      'sys_usuario',    'pkusuario',            false,  true);
+select sotech.sys_create_idx        ('sotech',  'est_rename',  'fkuser',  'sotech_est_rename_idx_fkuser');
+select sotech.sys_create_idx        ('sotech',  'est_rename',  'ativo',   'sotech_est_rename_idx_ativo');
+select sotech.sys_create_unq        ('sotech',  'est_rename',  'uuid',    'sotech_est_rename_unq_uuid');
 select sotech.sys_create_audit_table('sotech',  'est_rename');
 select sotech.sys_create_triggers   ('sotech',  'est_rename',  'pkrename',  'auditoria');
 select sotech.sys_create_triggers   ('sotech',  'est_rename',  'pkrename',  'tratamento');
@@ -77,6 +75,7 @@ begin
       v_erro := sotech.sys_set_erro(v_erro, 'UUID já cadastrado! UUID:' || new.uuid::text || ' -> Cód:' || v_registros.codigo::text);
     end if;
   end if;
+  -- unique
   -- final
   v_registros := null;
   if length(trim(v_erro)) = 0 then

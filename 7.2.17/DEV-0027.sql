@@ -2,19 +2,17 @@
 -- task_id:    DEV-
 -- version_db: 02.10.05.sql
 ---------------------------
-
 -- Normatização tabela sotech.rel_formulario_funcionalidade
 
-select sotech.sys_create_field('sotech',  'rel_formulario_funcionalidade',  'fkuser',       'integer',  null,           '0',                       true,   '(fk | idx | nn) - Referência com a tabela ish.sys_usuario');
-select sotech.sys_create_field('sotech',  'rel_formulario_funcionalidade',  'version',      'integer',  null,           '0',                       true,   '(nn)            - Versionamento do registro');
-select sotech.sys_create_field('sotech',  'rel_formulario_funcionalidade',  'ativo',        'boolean',  null,           'true',                    true,   '(idx | nn)      - Flag para desabilitar visualização do registro');
-select sotech.sys_create_field('sotech',  'rel_formulario_funcionalidade',  'uuid',         'uuid',     null,           'uuid_generate_v4()',      true,   '(unq | nn)      - UUID do registro');
-select sotech.sys_create_fk   ('sotech',  'rel_formulario_funcionalidade',  'fkuser',       'ish',      'sys_usuario',  'pkusuario',               false,  true);
-select sotech.sys_create_idx  ('sotech',  'rel_formulario_funcionalidade',  'fkuser',       'sotech_rel_formulario_funcionalidade_idx_fkuser');
-select sotech.sys_create_idx  ('sotech',  'rel_formulario_funcionalidade',  'ativo',        'sotech_rel_formulario_funcionalidade_idx_ativo');
-select sotech.sys_create_unq  ('sotech',  'rel_formulario_funcionalidade',  'uuid',         'sotech_rel_formulario_funcionalidade_unq_uuid');
-select sotech.sys_create_fk   ('sotech',  'rel_formulario_funcionalidade',  'fkformulario', 'sotech',   '',  '',        false,  true);
-
+select sotech.sys_create_field      ('sotech',  'rel_formulario_funcionalidade',  'fkuser',       'integer',      null,       '0',                  true,   '(fk | idx | nn) - Referência com a tabela ish.sys_usuario');
+select sotech.sys_create_field      ('sotech',  'rel_formulario_funcionalidade',  'version',      'integer',      null,       '0',                  true,   '(nn)            - Versionamento do registro');
+select sotech.sys_create_field      ('sotech',  'rel_formulario_funcionalidade',  'ativo',        'boolean',      null,       'true',               true,   '(idx | nn)      - Flag para desabilitar visualização do registro');
+select sotech.sys_create_field      ('sotech',  'rel_formulario_funcionalidade',  'uuid',         'uuid',         null,       'uuid_generate_v4()', true,   '(unq | nn)      - UUID do registro');
+select sotech.sys_create_fk         ('sotech',  'rel_formulario_funcionalidade',  'fkuser',       'ish',      'sys_usuario',  'pkusuario',          false,  true);
+select sotech.sys_create_idx        ('sotech',  'rel_formulario_funcionalidade',  'fkuser',       'sotech_rel_formulario_funcionalidade_idx_fkuser');
+select sotech.sys_create_idx        ('sotech',  'rel_formulario_funcionalidade',  'ativo',        'sotech_rel_formulario_funcionalidade_idx_ativo');
+select sotech.sys_create_unq        ('sotech',  'rel_formulario_funcionalidade',  'uuid',         'sotech_rel_formulario_funcionalidade_unq_uuid');
+select sotech.sys_create_fk         ('sotech',  'rel_formulario_funcionalidade',  'fkformulario', 'sotech',   '',  '',        false,  true);
 select sotech.sys_create_audit_table('sotech',  'rel_formulario_funcionalidade');
 select sotech.sys_create_triggers   ('sotech',  'rel_formulario_funcionalidade',  'pkformulariofuncionalidade',  'auditoria');
 select sotech.sys_create_triggers   ('sotech',  'rel_formulario_funcionalidade',  'pkformulariofuncionalidade',  'tratamento');
@@ -60,6 +58,7 @@ begin
       v_erro := sotech.sys_set_erro(v_erro, 'UUID já cadastrado! UUID:' || new.uuid::text || ' -> Cód:' || v_registros.codigo::text);
     end if;
   end if;
+  -- unique
   -- final
   v_registros := null;
   if length(trim(v_erro)) = 0 then
